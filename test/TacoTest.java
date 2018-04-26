@@ -26,5 +26,6 @@ public class TacoTest {
     public void taco_canAddGuac(){
         taco.addGuacamole();
         assertTrue(taco.hasGuacamole());
+        assertEquals(3.75, taco.getUnitPrice(), 0);
     }
 }

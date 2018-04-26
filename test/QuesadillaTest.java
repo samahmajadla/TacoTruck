@@ -26,6 +26,7 @@ public class QuesadillaTest {
     @Test
     public void ques_canHaveMeatAdded(){
         ques.addMeat();
+        assertEquals(6, ques.getUnitPrice(),0);
         assertTrue(ques.hasMeat());
     }
 

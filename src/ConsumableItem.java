@@ -1,6 +1,6 @@
 public abstract class ConsumableItem {
 
-    private final double unitPrice;
+    private double unitPrice;
 
     public ConsumableItem(double price){
         this.unitPrice = price;
@@ -8,5 +8,10 @@ public abstract class ConsumableItem {
 
     public double getUnitPrice() {
         return unitPrice;
+    }
+
+    public void setUnitPrice(double price) {
+        this.unitPrice = price;
+
     }
 }

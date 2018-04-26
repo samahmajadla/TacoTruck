@@ -12,5 +12,6 @@ public class Taco extends ConsumableItem{
 
     public void addGuacamole() {
         this.hasGuacamole = true;
+        this.setUnitPrice(this.getUnitPrice()+ .75);
     }
 }
