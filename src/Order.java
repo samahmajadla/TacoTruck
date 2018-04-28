@@ -1,6 +1,23 @@
+import java.util.LinkedList;
+
 public class Order {
 
-    /*
-    TODO finish order!!!! tie in consumables
-     */
+    private LinkedList<ConsumableItem> items;
+    public Order(){
+        items = new LinkedList<>();
+    }
+
+
+    public void addItem(ConsumableItem item) {
+        items.add(item);
+    }
+
+    public int getOrderSize() {
+        return items.size();
+    }
+
+
+    public ConsumableItem getItem(int index) {
+        return items.get(index);
+    }
 }
