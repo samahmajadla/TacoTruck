@@ -1,58 +1,58 @@
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Order {
 
 
+    /**
+     * Receipt takes care of subtotal, total.
+     */
     private class Receipt {
         private static final double TAX_RATE = 0.06;
-        private double tipAmount;
+        private double tipAmount = 0;
         private double subtotal = 0;
-
-        Receipt() {
-            this.tipAmount = 0;
-        }
 
         private double getTipAmount() {
             return tipAmount;
         }
 
+        public void setTipAmount(double tipAmount) {
+            this.tipAmount = tipAmount;
+        }
+
         private double getSubtotal() {
-            return subtotal; }
+            return subtotal;
+        }
 
         private void addToSubtotal(double priceToAdd) {
             this.subtotal += priceToAdd;
         }
 
-        public void setTipAmount(double tipAmount) {
-            this.tipAmount = tipAmount;
-        }
     }
-
 
     private LinkedList<ConsumableItem> items;
     private String customerName;
-    private  LocalDateTime time;
+    private LocalDateTime time;
     private Receipt receipt;
-    private boolean tacoPriceBreakFlag = false;
 
     public Order( String customerName ){
-        time = LocalDateTime.now();
+        this.time = LocalDateTime.now();
         this.customerName = customerName;
         items = new LinkedList<>();
         receipt = new Receipt();
+
     }
 
-    public void addItem(ConsumableItem item) {
-        items.add(item);
-        receipt.addToSubtotal(item.getUnitPrice());
+    public void addItem(ConsumableItem orderedItem) {
+        items.add(orderedItem);
+        receipt.addToSubtotal(orderedItem.getUnitPrice());
     }
 
     public int getOrderSize() {
         return items.size();
     }
-
-
 
     public ConsumableItem getItem(int index) {
         return items.get(index);
@@ -91,13 +91,13 @@ public class Order {
     }
 
     private int getTacoCount() {
-            int count = 0;
-            for (ConsumableItem element : this.items) {
-                if (element instanceof Taco) {
-                    count++;
-                }
+        int count = 0;
+        for (ConsumableItem element : this.items) {
+            if (element instanceof Taco) {
+                count++;
             }
-            return count;
+        }
+        return count;
     }
 
     public double getTotal() {
